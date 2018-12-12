@@ -15,7 +15,7 @@ Le 4 funzionalità implementate sono le seguenti:
 - cancellazione utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>DELETE</b> al seguente url:
  <i>localhost:3333/{user}/</i>
  
-dove {user} è lo username scelto per l'utente
+dove {user} è lo username scelto dall'utente
 
 Nel progetto è presente anche la documentazione dei servizi esposti generata in base alla notazione OPENAPI, disponibile al seguente url:
 <i>localhost:3333/api-docs/</i>
