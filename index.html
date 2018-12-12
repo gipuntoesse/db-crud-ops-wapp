@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+          content="web app test: operazioni crud su database">
+    <meta name="author" content="">
+    <meta name="designer" content="giulio squeo">
+    <meta name="publisher" content="">
+
+    <!-- Google Specific -->
+
+    <meta name="language" content="Italian">
+    <meta name="revisit-after" content="30 days">
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/animate.css" type="text/css"/>
+
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="./css/fonts/font-awesome/css/all.css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+    <title>Operazioni CRUD su database</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Operazioni CRUD su database</h1>
+        </div>
+
+
+    </div>
+    <br>
+    <div class="d-flex flex-row mt-2">
+
+        <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="tablist" id="crud_menu">
+            <li class="nav-item">
+                <a href="#create" class="nav-link " data-toggle="tab" role="tab"
+                   aria-controls="">Create</a>
+            </li>
+            <li class="nav-item">
+                <a href="#read" class="nav-link" data-toggle="tab" role="tab" aria-controls="">Read</a>
+            </li>
+            <li class="nav-item">
+                <a href="#update" class="nav-link" data-toggle="tab" role="tab" aria-controls="">Update</a>
+            </li>
+            <li class="nav-item">
+                <a href="#delete" class="nav-link" data-toggle="tab" role="tab" aria-controls="">Delete</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="create" role="tabpanel">
+                <div class="col">
+                    <h3 >Crea utente</h3>
+                </div>
+
+                <div class="col">
+                    <form name="create_form" id="create_form" class="needs-validation" novalidate>
+                        <div class="form-row">
+
+
+                            <div class="form-group col-12 col-sm-12 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_nome">Nome</label>
+                                <input type="text" class="form-control" id="create_nome" aria-describedby="nome"
+                                       name="nome"
+                                       placeholder="Nome" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+
+                            </div>
+
+
+                            <div class="form-group col-8 col-sm-8 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_cognome">Cognome</label>
+                                <input type="text" class="form-control" id="create_cognome" name="cognome"
+                                       aria-describedby="cognome" autocomplete="off"
+                                       placeholder="Cognome" required>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="create_ind_nome_wrapper" class="form-group col-8 col-sm-8 col-md-10 col-lg-10"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="create_ind_nome">Indirizzo</label>
+
+                                <input type="text" class="form-control" id="create_ind_nome" aria-describedby="via_nome"
+                                       name="ind_nome"
+                                       placeholder="Via" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+                            <div id="create_ind_civico_wrapper" class="form-group col-4 col-sm-4 col-md-2 col-lg-2"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="create_ind_civico">Civico</label>
+
+                                <input type="text" class="form-control" id="create_ind_civico"
+                                       aria-describedby="ind_civico"
+                                       name="ind_civico"
+                                       placeholder="Civico" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="create_ind_cap_wrapper" class="form-group col-3 col-sm-3 col-md-3 col-lg-3"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="create_ind_cap">CAP</label>
+
+                                <input type="text" class="form-control" id="create_ind_cap" aria-describedby="ind_cap"
+                                       name="ind_cap" pattern="\d{5}" minlength="5" maxlength="5"
+                                       placeholder="Cap" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido</div>
+
+                            </div>
+
+                            <div id="create_ind_citta_wrapper" class="form-group col-5 col-sm-5 col-md-7 col-lg-7"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="create_ind_citta">Citt&agrave;</label>
+
+                                <input type="text" class="form-control" id="create_ind_citta"
+                                       aria-describedby="ind_citta"
+                                       name="ind_citta"
+                                       placeholder="Citt&agrave;" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+                            <div id="create_ind_prov_wrapper" class="form-group col-4 col-sm-4 col-md-2 col-lg-2"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="create_ind_prov">Prov.</label>
+
+                                <input type="text" class="form-control" id="create_ind_prov" aria-describedby="ind_prov"
+                                       name="ind_prov" pattern="[a-zA-Z]{2,3}" minlength="2" maxlength="3"
+                                       placeholder="Prov." required autocomplete="off">
+
+                                <div class="invalid-feedback">Vuoto o non valido</div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="create_email_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_indirizzo_email">Email</label>
+                                <input type="email" class="form-control" autocomplete="off"
+                                       id="create_indirizzo_email" aria-describedby="indirizzo_email"
+                                       name="indirizzo_email"
+                                       placeholder="Email" required>
+
+                                <div class="invalid-feedback">I 2 indirizzi non coincidono o il formato &egrave; non
+                                    valido
+                                </div>
+                                <div class="valid-feedback">Email correttamente inserita</div>
+
+                            </div>
+
+                            <div id="create_re_email_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="border: none; text-align: start">
+
+                                <label for="create_ripeti_email">Ripeti Email</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="create_ripeti_email"
+                                       aria-describedby="ripeti_email" name="ripeti_email"
+                                       placeholder="Repeat Email">
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-row">
+                            <div id="create_username_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_username">Username</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="create_username" aria-describedby="username" name="username"
+                                       placeholder="Username" required>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div id="create_pwd_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_pwd">Password</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="create_pwd" aria-describedby="password" name="pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       placeholder="Più di 8 caratteri, almeno una lettera ed un numero" required>
+
+                                <div class="invalid-feedback">I 2 campi non coincidono o il formato &egrave; non
+                                    valido
+                                </div>
+                                <div class="valid-feedback">Password correttamente inserita</div>
+
+                            </div>
+
+                            <div id="create_re_pwd_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="border: none; text-align: start">
+
+                                <label for="create_ripeti_pwd">Ripeti Password</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="create_ripeti_pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       aria-describedby="ripeti_password" name="ripeti_pwd"
+                                       placeholder="Ripeti Password">
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div class="form-group col-12 col-sm-12 offset-md-8 col-md-4"
+                                 >
+
+
+                                <button id="create_submit" type="submit"
+                                        class="btn btn-lg"
+                                        style="text-align:center;color:white;margin: 0px;width:100%">
+                                    Crea Utente
+                                </button>
+
+
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="read" role="tabpanel">
+
+                <div class="col">
+                    <h3 >Recupero info utente</h3>
+                </div>
+                <div class="col">
+                    <form name="read_form" id="read_form" class="needs-validation" novalidate>
+                        <div class="form-row">
+                            <div id="read_username_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="create_username">Username</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="read_username" aria-describedby="username" name="username"
+                                       placeholder="Username" required>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+                            <div id="read_pwd_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="read_pwd">Password</label>
+                                <input type="password" class="form-control" autocomplete="off"
+                                       id="read_pwd" aria-describedby="password" name="pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       placeholder="Più di 8 caratteri, almeno una lettera ed un numero" required>
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 offset-md-8 col-md-4">
+
+
+                                <button id="read_submit" type="submit"
+                                        class="btn btn-lg"
+                                        style="text-align:center;color:white;margin: 0px;width:100%">
+                                    Trova Utente
+                                </button>
+
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+<div class="row" id=" user-data-title">
+    <div class="col">
+        <h4 style="visibility: hidden">Dati utente</h4>
+    </div>
+</div>
+                    <form name="read_res_form" id="read_res_form" class="needs-validation" novalidate
+                          style="visibility: hidden;">
+                        <div class="form-row">
+
+
+                            <div class="form-group col-12 col-sm-12 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="read_res_nome">Nome</label>
+                                <input type="text" class="form-control" id="read_res_nome" aria-describedby="nome"
+                                       name="nome"
+                                       placeholder="Nome" disabled>
+
+                            </div>
+
+
+                            <div class="form-group col-8 col-sm-8 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="read_res_cognome">Cognome</label>
+                                <input type="text" class="form-control" id="read_res_cognome" name="cognome"
+                                       aria-describedby="cognome" disabled
+                                       placeholder="Cognome">
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="read_res_ind_nome_wrapper" class="form-group col-8 col-sm-8 col-md-10 col-lg-10"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="read_res_ind_nome">Indirizzo</label>
+
+                                <input type="text" class="form-control" id="read_res_ind_nome"
+                                       aria-describedby="via_nome"
+                                       name="ind_nome"
+                                       placeholder="Via" disabled>
+
+                            </div>
+
+                            <div id="read_res_ind_civico_wrapper" class="form-group col-4 col-sm-4 col-md-2 col-lg-2"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="read_res_ind_civico">Civico</label>
+
+                                <input type="text" class="form-control" id="read_res_ind_civico"
+                                       aria-describedby="ind_civico"
+                                       name="ind_civico"
+                                       placeholder="Civico" disabled>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="read_res_ind_cap_wrapper" class="form-group col-3 col-sm-3 col-md-3 col-lg-3"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="read_res_ind_cap">CAP</label>
+
+                                <input type="text" class="form-control" id="read_res_ind_cap" aria-describedby="ind_cap"
+                                       name="ind_cap" pattern="\d{5}" minlength="5" maxlength="5"
+                                       placeholder="Cap" disabled>
+
+
+                            </div>
+
+                            <div id="read_res_ind_citta_wrapper" class="form-group col-5 col-sm-5 col-md-7 col-lg-7"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="read_res_ind_citta">Citt&agrave;</label>
+
+                                <input type="text" class="form-control" id="read_res_ind_citta"
+                                       aria-describedby="ind_citta"
+                                       name="ind_citta"
+                                       placeholder="Citt&agrave;" disabled>
+
+                            </div>
+
+                            <div id="read_res_ind_prov_wrapper" class="form-group col-4 col-sm-4 col-md-2 col-lg-2"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="read_res_ind_prov">Prov.</label>
+
+                                <input type="text" class="form-control" id="read_res_ind_prov"
+                                       aria-describedby="ind_prov"
+                                       name="ind_prov" pattern="[a-zA-Z]{2,3}" minlength="2" maxlength="3"
+                                       placeholder="Prov." disabled>
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-row">
+
+
+                            <div id="read_res_email_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="read_res_indirizzo_email">Email</label>
+                                <input type="email" class="form-control" autocomplete="off"
+                                       id="read_res_indirizzo_email" aria-describedby="indirizzo_email"
+                                       name="indirizzo_email"
+                                       placeholder="Email" disabled>
+
+
+                            </div>
+
+                            <div id="read_data_creazione_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="read_res_data_creazione">Data Creazione</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="read_res_data_creazione" aria-describedby="data_creazione"
+                                       name="data_creazione"
+                                       placeholder="Data Creazione" disabled>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="update" role="tabpanel">
+                <div class="col">
+                    <h3 >Aggiorna info utente</h3>
+                </div>
+                <div class="col">
+                    <form name="update_form" id="update_form" class="needs-validation" novalidate>
+
+
+                        <div class="form-row">
+                            <div id="update_username_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_username">Username</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="update_username" aria-describedby="username" name="username"
+                                       placeholder="Username" required>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+                            <div id="update_pwd_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_pwd">Password</label>
+                                <input type="password" class="form-control" autocomplete="off"
+                                       id="update_pwd" aria-describedby="password" name="pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       placeholder="Più di 8 caratteri, almeno una lettera ed un numero" required>
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_nome">
+                                    <label class="custom-control-label" for="check_nome"></label>
+                                </div>
+                            </div>
+                            <div class="col-10 col-sm-5 col-md-5 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_nome">Nome</label>
+                                <input type="text" class="form-control" id="update_nome" aria-describedby="nome"
+                                       name="nome" disabled
+                                       placeholder="Nome" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_cognome">
+                                    <label class="custom-control-label" for="check_cognome"></label>
+                                </div>
+                            </div>
+
+                            <div class=" col-8 col-sm-5 col-md-5 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_cognome">Cognome</label>
+                                <input type="text" class="form-control" id="update_cognome" name="cognome"
+                                       aria-describedby="cognome" autocomplete="off"
+                                       placeholder="Cognome" required disabled>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row align-items-center">
+
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_ind_nome">
+                                    <label class="custom-control-label" for="check_ind_nome"></label>
+                                </div>
+                            </div>
+                            <div id="update_ind_nome_wrapper"
+                                 class="form-group col-10 col-sm-7 col-md-7 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="update_ind_nome">Indirizzo</label>
+
+                                <input type="text" class="form-control" id="update_ind_nome" aria-describedby="via_nome"
+                                       name="ind_nome"
+                                       placeholder="Via" required disabled autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_ind_civico">
+                                    <label class="custom-control-label" for="check_ind_civico"></label>
+                                </div>
+                            </div>
+
+                            <div id="update_ind_civico_wrapper"
+                                 class="form-group col-4 col-sm-3 col-md-3 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="update_ind_civico">Civico</label>
+
+                                <input type="text" class="form-control" id="update_ind_civico"
+                                       aria-describedby="ind_civico"
+                                       name="ind_civico" disabled
+                                       placeholder="Civico" required autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_ind_cap">
+                                    <label class="custom-control-label" for="check_ind_cap"></label>
+                                </div>
+                            </div>
+
+                            <div id="update_ind_cap_wrapper" class="form-group col-10 col-sm-3 col-md-3 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="update_ind_cap">CAP</label>
+
+                                <input type="text" class="form-control" id="update_ind_cap" aria-describedby="ind_cap"
+                                       name="ind_cap" pattern="\d{5}" minlength="5" maxlength="5"
+                                       placeholder="Cap" required disabled autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido</div>
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_ind_citta">
+                                    <label class="custom-control-label" for="check_ind_citta"></label>
+                                </div>
+                            </div>
+
+                            <div id="update_ind_citta_wrapper"
+                                 class="form-group col-10 col-sm-4 col-md-4 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+                                <label for="update_ind_citta">Citt&agrave;</label>
+
+                                <input type="text" class="form-control" id="update_ind_citta"
+                                       aria-describedby="ind_citta"
+                                       name="ind_citta"
+                                       placeholder="Citt&agrave;" required disabled autocomplete="off">
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+
+                        </div>
+
+<div class="form-row align-items-center">
+    <div class="col-2 col-sm-1 col-md-1 my-1">
+        <div class="custom-control custom-checkbox mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="check_ind_prov">
+            <label class="custom-control-label" for="check_ind_prov"></label>
+        </div>
+    </div>
+
+    <div id="update_ind_prov_wrapper"
+         class="form-group col-10 col-sm-2 col-md-2 my-1"
+         style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+        <label for="update_ind_prov">Prov.</label>
+
+        <input type="text" class="form-control" id="update_ind_prov" aria-describedby="ind_prov"
+               name="ind_prov" pattern="[a-zA-Z]{2,3}" minlength="2" maxlength="3"
+               placeholder="Prov." required disabled autocomplete="off">
+
+        <div class="invalid-feedback">Vuoto o non valido</div>
+
+    </div>
+
+</div>
+
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_email">
+                                    <label class="custom-control-label" for="check_email"></label>
+                                </div>
+                            </div>
+
+                            <div id="update_email_wrapper" class="form-group col-10 col-sm-5 col-md-5 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_indirizzo_email">Email</label>
+                                <input type="email" class="form-control" autocomplete="off"
+                                       id="update_indirizzo_email" aria-describedby="indirizzo_email"
+                                       name="indirizzo_email"
+                                       placeholder="Email" required disabled>
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2 col-sm-1 col-md-1 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="check_new_pwd">
+                                    <label class="custom-control-label" for="check_new_pwd"></label>
+                                </div>
+                            </div>
+
+                            <div id="update_new_pwd_wrapper" class="form-group col-10 col-sm-5 col-md-5 my-1"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="update_new_pwd">Nuova Password</label>
+                                <input type="text" class="form-control" autocomplete="off" disabled
+                                       id="update_new_pwd" aria-describedby="nuova password" name="new_pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       placeholder="Più di 8 caratteri, almeno una lettera ed un numero" required>
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido
+                                </div>
+
+
+                            </div>
+                        </div>
+
+<br>
+
+                        <div class="form-row">
+
+
+                            <div class="form-group col-12 col-sm-12 offset-md-8 col-md-4"
+                                >
+
+
+                                <button id="update_submit" type="submit"
+                                        class="btn btn-lg"
+                                        style="text-align:center;color:white;margin: 0px;width:100%">
+                                    Aggiorna Utente
+                                </button>
+
+
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="delete" role="tabpanel">
+                <div class="col">
+                    <h3 >Cancella utente</h3>
+                </div>
+                <div class="col">
+
+                    <form name="read_form" id="delete_form" class="needs-validation" novalidate>
+                        <div class="form-row">
+                            <div id="delete_username_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="delete_username">Username</label>
+                                <input type="text" class="form-control" autocomplete="off"
+                                       id="delete_username" aria-describedby="username" name="username"
+                                       placeholder="Username" required>
+
+                                <div class="invalid-feedback">Campo vuoto</div>
+
+                            </div>
+
+
+                            <div id="delete_pwd_wrapper" class="form-group col-12 col-sm-6 col-md-6"
+                                 style="moz-border: none; -webkit-border:none; -o-border:none;-ms-border:none;border: none; text-align: start">
+
+                                <label for="delete_pwd">Password</label>
+                                <input type="password" class="form-control" autocomplete="off"
+                                       id="delete_pwd" aria-describedby="password" name="pwd"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                       placeholder="Più di 8 caratteri, almeno una lettera ed un numero" required>
+
+                                <div class="invalid-feedback">Campo vuoto o formato non valido
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 offset-md-8 col-md-4">
+
+
+                                <button id="delete_submit" type="submit"
+                                        class="btn btn-lg"
+                                        style="text-align:center;color:white;margin: 0px;width:100%">
+                                    Rimuovi Utente
+                                </button>
+
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<!--modal contenente risposta server-->
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-border">
+                    <div class="modal-header" style="border-bottom: none">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-8 mx-auto">
+                                    <div id="modal_icon_ko" class="text-center d-none"><i class="far fa-5x fa-exclamation-circle"></i></div>
+                                    <div id="modal_icon_ok" class="text-center d-none"><i class="far fa-5x fa-check-circle"></i></div>
+                                    <div class="fancy-title text-center title-center">
+                                        <h4 class="color-verde d-none" id="modal_title_ok">Operazione completata!</h4>
+
+                                        <h4 class="color-rosso d-none" id="modal_title_ko">Attenzione!</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+
+
+                                    <p class="lead text-justify d-none" id="modal_content_ok"
+                                       style="font-weight: 400;color: #000; text-align-last: left">
+                                        </p>
+
+                                    <p class="lead text-justify d-none" id="modal_content_ko" style="font-weight: 400;color: #000; text-align-last: left">
+                                        Codice errore: <span id="error_http_code"> </span>.<br>
+                                        <span id="error_message"></span>
+
+
+                                    </p>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/sjcl.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

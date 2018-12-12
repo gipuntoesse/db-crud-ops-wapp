@@ -1,0 +1,21 @@
+{
+  "name": "dbcrudwebapp",
+  "version": "1.0.0",
+  "description": "backend web app per operazioni crud su database",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "crypto": "1.0.1",
+    "express": "4.16.4",
+    "moment": "2.22.2",
+    "mongodb": "3.1.10",
+    "swagger-ui-express": "4.0.2"
+  }
+}

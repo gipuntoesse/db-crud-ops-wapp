@@ -1,0 +1,349 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Documentazione api operazioni crud su database",
+    "description": "Documentazione servizi generata in base alla notazione della specifica OpenApi",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "inserimento nuovo utente su db",
+        "description": "inserimento nuovo utente su db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "inserimento nuovo utente avvenuto con successo",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "400": {
+            "description": "informazioni incomplete o eccedenti quelle richieste, o validazione dei dati fallita",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          }
+        }
+      }
+    },
+    "/{user}": {
+      "put": {
+        "summary": "aggiornamento utente su db",
+        "description": "aggiornamento utente su db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-auth",
+            "description": "risultato dell'applicazione funzione hash sha-256 alla password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "description": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Update"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "aggiornamento dati utente avvenuto con successo",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "400": {
+            "description": "informazioni eccedenti quelle richieste, o validazione dei campi fallita",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "403": {
+            "description": "credenziali non corrette",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "404": {
+            "description": "utente non trovato",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "recupero info utente da db",
+        "description": "recupero info utente da db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-auth",
+            "description": "risultato dell'applicazione funzione hash sha-256 alla password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "path",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "recupero info utente",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "400": {
+            "description": "credenziali incomplete",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "403": {
+            "description": "credenziali non corrette",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "404": {
+            "description": "utente non trovato",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "rimozione utente dal db",
+        "description": "rimozione utente dal db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user-auth",
+            "description": "risultato dell'applicazione funzione hash sha-256 alla password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "path",
+            "description": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "rimozione avvenuta con successo",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "400": {
+            "description": "credenziali incomplete",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "403": {
+            "description": "credenziali non corrette",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          },
+          "404": {
+            "description": "utente non trovato",
+            "schema": {
+              "$ref": "#/definitions/Output"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "nome",
+        "cognome",
+        "username",
+        "password",
+        "email",
+        "strada",
+        "civico",
+        "citta",
+        "cap",
+        "prov"
+      ],
+      "properties": {
+        "nome": {
+          "type": "string"
+        },
+        "cognome": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "description": "password, almeno 8 caratteri di cui uno o più numerico",
+          "pattern": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "strada": {
+          "type": "string"
+        },
+        "civico": {
+          "type": "string"
+        },
+        "citta": {
+          "type": "string"
+        },
+        "cap": {
+          "type": "string",
+          "description": "codice numerico costituito da 5 cifre",
+          "pattern": "^\\d{5}$"
+        },
+        "prov": {
+          "type": "string",
+          "description": "codice provincia",
+          "pattern": "^[a-zA-Z]{2,3}$",
+          "minLength": 2,
+          "maxLength": 3
+        }
+      }
+    },
+    "Output": {
+      "type": "object",
+      "required": [
+        "action",
+        "output"
+      ],
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "nome indicante l'operazione di cui la risposta è esito"
+        },
+        "output": {
+          "type": "string",
+          "description": "risultato dell'operazione, ok o ko"
+        },
+        "error": {
+          "type": "string",
+          "description": "se presente, indica quale tipo di errore il backend ha generato"
+        },
+        "nome": {
+          "type": "string",
+          "description": "nome utente"
+        },
+        "cognome": {
+          "type": "string",
+          "description": "cognome utente"
+        }
+      }
+    },
+    "Update": {
+      "type": "object",
+      "description": "inserimento solo delle coppie chiavi/valore relative alle info da aggiornare",
+      "properties": {
+        "nome": {
+          "type": "string"
+        },
+        "cognome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "strada": {
+          "type": "string"
+        },
+        "civico": {
+          "type": "string"
+        },
+        "citta": {
+          "type": "string"
+        },
+        "cap": {
+          "type": "string",
+          "description": "codice numerico costituito da 5 cifre",
+          "pattern": "^\\d{5}$"
+        },
+        "prov": {
+          "type": "string",
+          "pattern": "^[a-zA-Z]{2,3}$",
+          "description": "codice provincia",
+          "minLength": 2,
+          "maxLength": 3
+        },
+        "password": {
+          "type": "string",
+          "description": "nuova password, almeno 8 caratteri di cui uno o più numerico",
+          "pattern": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
