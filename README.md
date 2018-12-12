@@ -8,9 +8,9 @@ Le 4 funzionalità implementate sono le seguenti:
 - memorizzazione di un nuovo utente su db, la cui api è disponibile attraverso una richiesta http <b>POST</b> al seguente url:
   <i>localhost:3333/</i>
 - recupero di un utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>GET</b> al seguente url:
- <i>localhost:3333/{user}/
+ <i>localhost:3333/{user}/</i>
 - aggiornamento informazioni relative utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>PUT</b> al seguente url:
- <i>localhost:3333/{user}/
+ <i>localhost:3333/{user}/</i>
 - cancellazione utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>DELETE</b> al seguente url:
  <i>localhost:3333/{user}/
  
