@@ -13,7 +13,7 @@ Le 4 funzionalità implementate sono le seguenti:
 - aggiornamento informazioni relative utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>PUT</b> al seguente url:
  <i>localhost:3333/{user}/</i>
 - cancellazione utente dal db, la cui api è disponibile attraverso attraverso una richiesta http <b>DELETE</b> al seguente url:
- <i>localhost:3333/{user}/
+ <i>localhost:3333/{user}/</i>
  
 dove {user} è lo username scelto per l'utente
 
